@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traductor de Código Morse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div class="logo-badge">
+        <span class="pulse-dot"></span>
+        <span>PROYECTO BIONIC</span>
+      </div>
+      <h1>Traductor de Código Morse</h1>
+      <p class="subtitle">Traducción bidireccional instantánea, limpia y liviana con audio y guía visual.</p>
+    </header>
+
+    <div class="translator-card">
+      <div class="mode-switch-container">
+        <button id="mode-text-to-morse" class="mode-btn active" type="button">
+          <span>Texto ➔ Morse</span>
+        </button>
+        <button id="swap-mode-btn" class="icon-swap-btn" title="Invertir dirección" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/>
+          </svg>
+        </button>
+        <button id="mode-morse-to-text" class="mode-btn" type="button">
+          <span>Morse ➔ Texto</span>
+        </button>
+      </div>
+
+      <div class="panels-grid">
+        <!-- Panel de Entrada -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title" id="input-title">Texto normal</span>
+            <div class="panel-actions">
+              <span class="counter" id="input-counter">0 caracteres</span>
+              <button id="clear-btn" class="mini-btn" title="Limpiar texto" type="button">Borrar</button>
+            </div>
+          </div>
+          <div class="textarea-wrapper">
+            <textarea 
+              id="input-text" 
+              placeholder="Escribe tu mensaje aquí..." 
+              spellcheck="false" 
+              autocomplete="off"
+            ></textarea>
+          </div>
+          <div class="morse-helper-buttons" id="morse-helpers" style="display: none;">
+            <button type="button" class="morse-insert-btn" data-val=".">• Punto ( . )</button>
+            <button type="button" class="morse-insert-btn" data-val="-">— Raya ( - )</button>
+            <button type="button" class="morse-insert-btn" data-val=" ">Espacio letra</button>
+            <button type="button" class="morse-insert-btn" data-val=" / ">/ Separador palabra</button>
+          </div>
+        </div>
+
+        <!-- Panel de Salida -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title" id="output-title">Código Morse</span>
+            <div class="panel-actions">
+              <button id="copy-btn" class="mini-btn highlight-btn" title="Copiar al portapapeles" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span id="copy-label">Copiar</span>
+              </button>
+              <button id="play-sound-btn" class="mini-btn audio-btn" title="Reproducir sonido Morse" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                <span id="play-label">Escuchar</span>
+              </button>
+            </div>
+          </div>
+          <div class="textarea-wrapper">
+            <textarea 
+              id="output-text" 
+              placeholder="La traducción aparecerá aquí..." 
+              readonly
+            ></textarea>
+          </div>
+          <div class="signal-indicator" id="signal-light">
+            <span class="lamp"></span>
+            <span class="lamp-label">Señal activa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referencia Rápida / Tabla Morse -->
+    <details class="morse-table-card">
+      <summary>Tabla y Guía de Consulta de Código Morse (A-Z, 0-9)</summary>
+      <div class="morse-grid-container" id="morse-reference-grid">
+        <!-- Generado dinámicamente o estructurado -->
+      </div>
+    </details>
+
+    <footer class="footer">
+      <p>Traductor Morse Liviano • Proyecto Bionic</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

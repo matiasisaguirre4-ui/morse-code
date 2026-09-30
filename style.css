@@ -1,0 +1,386 @@
+:root {
+  --bg-color: #0b0f19;
+  --card-bg: rgba(19, 26, 43, 0.75);
+  --panel-bg: #111827;
+  --panel-border: #1f293d;
+  --text-main: #f3f4f6;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-hover: #0284c7;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --success: #10b981;
+  --morse-code-font: 'JetBrains Mono', monospace;
+  --sans-font: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%);
+  color: var(--text-main);
+  font-family: var(--sans-font);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.header h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 500px;
+}
+
+/* Main Card */
+.translator-card {
+  background: var(--card-bg);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Mode Switcher */
+.mode-switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 6px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--panel-border);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+  background: var(--accent);
+  color: #0b0f19;
+  box-shadow: 0 2px 10px var(--accent-glow);
+}
+
+.icon-swap-btn {
+  background: #1e293b;
+  border: 1px solid var(--panel-border);
+  color: var(--accent);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-swap-btn:hover {
+  background: var(--accent);
+  color: #0b0f19;
+  transform: rotate(180deg);
+}
+
+/* Panels Grid */
+.panels-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 720px) {
+  .panels-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.panel:focus-within {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.1);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.counter {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.mini-btn {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+
+.mini-btn:hover {
+  background: #334155;
+}
+
+.mini-btn.highlight-btn:hover {
+  background: var(--accent);
+  color: #0b0f19;
+}
+
+.mini-btn.audio-btn.playing {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+.textarea-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  background: transparent;
+  border: none;
+  resize: vertical;
+  color: var(--text-main);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  font-family: var(--sans-font);
+  outline: none;
+}
+
+#output-text,
+.morse-mode-input {
+  font-family: var(--morse-code-font) !important;
+  letter-spacing: 0.08em;
+}
+
+textarea::placeholder {
+  color: #475569;
+}
+
+/* Morse Quick Helpers */
+.morse-helper-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--panel-border);
+}
+
+.morse-insert-btn {
+  background: #1e293b;
+  border: 1px solid var(--panel-border);
+  color: var(--accent);
+  font-family: var(--morse-code-font);
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.morse-insert-btn:hover {
+  background: #334155;
+}
+
+/* Signal Indicator (LED) */
+.signal-indicator {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding-top: 6px;
+  border-top: 1px solid var(--panel-border);
+}
+
+.signal-indicator.active {
+  display: flex;
+}
+
+.lamp {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #334155;
+  transition: background 0.05s, box-shadow 0.05s;
+}
+
+.lamp.on {
+  background: #38bdf8;
+  box-shadow: 0 0 14px #38bdf8, 0 0 24px #38bdf8;
+}
+
+.lamp-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Morse Reference Table */
+.morse-table-card {
+  background: var(--card-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.morse-table-card summary {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  outline: none;
+}
+
+.morse-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.morse-item {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.morse-item .char {
+  font-weight: 700;
+  color: #fff;
+}
+
+.morse-item .code {
+  font-family: var(--morse-code-font);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
